@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Color channels are stored as RGB triplets so Tailwind opacity classes
+   (for example bg-primary/10 and border-gray-200/70) remain valid. */
+@layer base {
+  :root,
+  html[data-theme='light'] {
+    --primary: 37 99 235;
+    --background: 243 244 246;
+    --surface: 255 255 255;
+    --text: 31 41 55;
+    --gray-50: 249 250 251;
+    --gray-100: 243 244 246;
+    --gray-200: 229 231 235;
+    --gray-300: 209 213 219;
+    --gray-400: 156 163 175;
+    --gray-500: 107 114 128;
+    --gray-600: 75 85 99;
+    --gray-700: 55 65 81;
+    --gray-800: 31 41 55;
+    --gray-900: 17 24 39;
+  }
+
+  html[data-theme='dark'] {
+    --primary: 96 165 250;
+    --background: 17 24 39;
+    --surface: 31 41 55;
+    --text: 249 250 251;
+    --gray-50: 31 41 55;
+    --gray-100: 39 52 73;
+    --gray-200: 55 65 81;
+    --gray-300: 75 85 99;
+    --gray-400: 156 163 175;
+    --gray-500: 174 184 199;
+    --gray-600: 203 213 225;
+    --gray-700: 209 213 219;
+    --gray-800: 229 231 235;
+    --gray-900: 249 250 251;
+  }
+
+  html[data-theme='tea'] {
+    --primary: 166 90 36;
+    --background: 247 239 228;
+    --surface: 255 250 243;
+    --text: 66 39 25;
+    --gray-50: 255 250 243;
+    --gray-100: 247 239 228;
+    --gray-200: 234 217 197;
+    --gray-300: 216 190 163;
+    --gray-400: 185 154 125;
+    --gray-500: 141 109 83;
+    --gray-600: 114 83 62;
+    --gray-700: 91 61 44;
+    --gray-800: 66 39 25;
+    --gray-900: 44 25 15;
+  }
+
+  html[data-theme='matcha'] {
+    --primary: 39 128 77;
+    --background: 237 245 235;
+    --surface: 251 255 249;
+    --text: 23 59 39;
+    --gray-50: 251 255 249;
+    --gray-100: 237 245 235;
+    --gray-200: 216 232 215;
+    --gray-300: 189 213 189;
+    --gray-400: 142 177 142;
+    --gray-500: 94 128 100;
+    --gray-600: 66 104 78;
+    --gray-700: 45 81 59;
+    --gray-800: 28 66 45;
+    --gray-900: 18 48 31;
+  }
+}
+
+html, body, #root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: rgb(var(--background));
+  color: rgb(var(--text));
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+button, input, select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.scrollbar-hide { scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+#printable-receipt {
+  position: fixed;
+  top: 0;
+  left: -10000px;
+  width: 80mm;
+  padding: 3mm;
+  background: #fff;
+  color: #000;
+  font-family: Arial, sans-serif;
+}
+
+@media print {
+  @page { size: 80mm auto; margin: 0; }
+  html, body, #root { width: 80mm !important; height: auto !important; min-height: 0 !important; overflow: visible !important; background: #fff !important; }
+  body * { visibility: hidden !important; }
+  #printable-receipt, #printable-receipt * { visibility: visible !important; }
+  #printable-receipt {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 80mm !important;
+    margin: 0 !important;
+    padding: 3mm !important;
+    color: #000 !important;
+    background: #fff !important;
+    opacity: 1 !important;
+  }
+}
